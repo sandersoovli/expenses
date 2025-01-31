@@ -2,6 +2,7 @@
 import ExpenseItem from './components/ExpenseItem';
 import './App.css';
 import Expenses from './components/Expenses';
+
 const App = () => {
   const data = [ {
     id: 'e1',
