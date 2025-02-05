@@ -2,9 +2,11 @@
 import ExpenseItem from './components/ExpenseItem';
 import './App.css';
 import Expenses from './components/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
 
 const App = () => {
-  const data = [ {
+  const data = [ 
+  {
     id: 'e1',
     date: new Date(2024, 10, 12),
     title: 'New book',
@@ -21,8 +23,7 @@ const App = () => {
   
   return (
     <div>
-      
-      
+      <NewExpense></NewExpense>
       <Expenses expenses={data} />
     </div>
   );

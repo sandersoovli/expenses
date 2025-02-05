@@ -11,19 +11,25 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
-  const filteredExpenses = props.expenses.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
+
+
+  // Filter expenses based on the selected year
+  const filteredExpenses = props.expenses.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear; 
   });
 
+  // Check props to see what data is coming in
   console.log(props);
 
   return (
     <div className="expenses">
       <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+      
+      {/* Map through filtered expenses */}
       {filteredExpenses.map((expense) => (
         <ExpenseItem
-          key={expense.id} // Unikaalne võti iga elemendi jaoks.
-          data={expense} // Saadame ExpenseItem-le ühe kulu objekti.
+          key={expense.id} // Unique key for each item
+          data={expense}    // Passing expense data to ExpenseItem
         />
       ))}
     </div>
