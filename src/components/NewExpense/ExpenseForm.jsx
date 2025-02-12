@@ -2,54 +2,34 @@ import { useState } from 'react';
 import '../NewExpense/ExpenseFrom.css';
 
 const ExpenseForm = (props) => {
-    const [userInput, setUserInput] = useState({
-      enteredTitle: '',
-      enteredPrice: '',
-      enteredDate: ''
-    });
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
+    //});
   
     const titleChangeHandler = (event) => {
-      setUserInput((prevState) => ({
-        ...prevState,
-        enteredTitle: event.target.value
-      }));
+      setEnteredTitle(event.target.value);
     };
   
-    const priceChangeHandler = (event) => {
-      setUserInput((prevState) => ({
-        ...prevState,
-        enteredPrice: event.target.value
-      }));
+    const amountChangeHandler = (event) => {
+      setEnteredAmount(event.target.value);
     };
   
     const dateChangeHandler = (event) => {
-      setUserInput((prevState) => ({
-        ...prevState,
-        enteredDate: event.target.value
-      }));
+      setEnteredDate(event.target.value);
     };
   
     const submitHandler = (event) => {
       event.preventDefault();
-  
       const expenseData = {
-        id: Math.random().toString(),
-        title: userInput.enteredTitle,
-        price: parseFloat(userInput.enteredPrice),
-        date: new Date(userInput.enteredDate)
+        title: enteredTitle,
+        amount: +enteredAmount,
+        date: new Date(enteredDate),
       };
-  
-      // Kontrollige, et funktsioon on määratud enne selle kutsumist
-      if (props.onSaveExpenseData) {
-        props.onSaveExpenseData(expenseData); // Siin edastame andmed tagasi App.js
-      }
-  
-      // Tühjendame vormi väljad
-      setUserInput({
-        enteredTitle: '',
-        enteredPrice: '',
-        enteredDate: ''
-      });
+      props.onSaveExpenseData(expenseData);
+      setEnteredTitle("");
+      setEnteredAmount("");
+      setEnteredDate("");
     };
   
     return (
@@ -57,36 +37,19 @@ const ExpenseForm = (props) => {
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label>Title</label>
-            <input
-              type="text"
-              value={userInput.enteredTitle}
-              onChange={titleChangeHandler}
-            />
+            <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
           </div>
-        </div>
-        <div className="new-expense__controls">
           <div className="new-expense__control">
-            <label>Price</label>
-            <input
-              type="number"
-              min="0.01"
-              step="0.01"
-              value={userInput.enteredPrice}
-              onChange={priceChangeHandler}
-            />
+            <label>Amount</label>
+            <input type="number" value={enteredAmount} min="0.01" step="0.01" onChange={amountChangeHandler} />
           </div>
-        </div>
-        <div className="new-expense__controls">
           <div className="new-expense__control">
             <label>Date</label>
-            <input
-              type="date"
-              value={userInput.enteredDate}
-              onChange={dateChangeHandler}
-            />
+            <input type="date" value={enteredDate} min="2019-01-01" max="2025-12-31" onChange={dateChangeHandler} />
           </div>
         </div>
         <div className="new-expense__actions">
+          <button type="button" onClick={props.onCancel}>Cancel</button> {/* ✅ Cancel nupp */}
           <button type="submit">Add Expense</button>
         </div>
       </form>
