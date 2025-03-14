@@ -1,7 +1,8 @@
 import './ExpenseItem.css'
 import '../App.jsx'
 import  ExpenseDate  from './ExpenseDate.jsx'
-import Card from './Card.jsx'
+import Card from '../UI/Card.jsx'
+
 
 const ExpenseItem = (props) => {
 const submitHandler = (event) => {

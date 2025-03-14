@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem.jsx';
 import ExpensesFilter from '../components/Expenses/ExpensesFilter.jsx';
-import ExpensesList from './ExpensesList'; // Or import ExpensesList from './ExpensesList';
+import ExpensesList from './ExpensesList'; 
 import './Expenses.css';
 
 const Expenses = (props) => {
@@ -12,17 +11,13 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
+    // ✅ Kontrollime, kas props.expenses on määratud, kui ei, kasutame tühja massiivi
+    const expenses = props.expenses || [];
 
-
-  // Filter expenses based on the selected year
-  const filteredExpenses = props.expenses.filter(expense => {
-    return expense.date.getFullYear().toString() === filteredYear; 
-  });
-
-
-  // Check props to see what data is coming in
-  console.log(props);
-
+  const filteredExpenses = expenses.filter(expense => 
+    expense.date?.getFullYear().toString() === filteredYear
+  );
+  console.log(props.expenses)
   return (
     <div className="expenses">
       <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
