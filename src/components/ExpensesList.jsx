@@ -3,6 +3,10 @@ import ExpenseItem from './ExpenseItem.jsx';
 import './ExpensesList.css';
 
 const ExpensesList = (props) => {
+  if (props.isLoading) {
+    return <h2 className="expenses-list__fallback">Loading...</h2>;
+  }
+
   if (props.items.length === 0) {
     return <h2 className="expenses-list__fallback">No expenses found.</h2>;
   }

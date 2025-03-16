@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
-import ExpensesFilter from "./Expenses/ExpensesFilter.jsx";
-import ExpensesList from './ExpensesList.jsx';
-import './Expenses.css';
+import React from 'react';
+import ExpenseItem from './ExpenseItem.jsx';
+import './ExpensesList.css';
 
-const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState(new Date().getFullYear().toString());
+const ExpensesList = (props) => {
+  if (props.isLoading) {
+    return <p className="expenses-list__fallback"><b>Fetching expenses data...</b></p>;
+  }
 
-  const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-  };
-
-  const expenses = props.items || [];
-
-  const filteredExpenses = expenses.filter(expense => 
-    new Date(expense.date).getFullYear().toString() === filteredYear
-  );
+  if (props.items.length === 0) {
+    return <p className="expenses-list__fallback">No expenses found.</p>;
+  }
 
   return (
-    <div className="expenses">
-      <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-      <ExpensesList items={filteredExpenses} />
-    </div>
+    <ul className="expenses-list">
+      {props.items.map((expense) => (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      ))}
+    </ul>
   );
 };
 
-export default Expenses;
+export default ExpensesList;

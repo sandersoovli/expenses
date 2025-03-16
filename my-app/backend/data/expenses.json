@@ -1,0 +1,20 @@
+[
+    {
+      "id": "id1",
+      "date": "2023-01-18T22:00:00.000Z",
+      "title": "New Book",
+      "amount": 39.99
+    },
+    {
+      "id": "id2",
+      "date": "2024-01-18T22:00:00.000Z",
+      "title": "New Jeans",
+      "amount": 99.99
+    },
+    {
+      "id": "id3",
+      "date": "2024-01-24T22:00:00.000Z",
+      "title": "New Bag",
+      "amount": 139.99
+    }
+  ]
