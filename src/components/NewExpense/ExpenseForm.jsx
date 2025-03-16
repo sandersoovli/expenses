@@ -1,6 +1,6 @@
 import { useRef, useState, Fragment } from "react";
 import "./ExpenseForm.css";
-import Error from "../../UI/Error";
+import Error from "../../UI/ErrorModal";
 
 const ExpenseForm = (props) => {
   const [error, setError] = useState(null);

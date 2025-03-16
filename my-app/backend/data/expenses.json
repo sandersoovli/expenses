@@ -1,20 +1,14 @@
 [
-    {
-      "id": "id1",
-      "date": "2023-01-18T22:00:00.000Z",
-      "title": "New Book",
-      "amount": 39.99
-    },
-    {
-      "id": "id2",
-      "date": "2024-01-18T22:00:00.000Z",
-      "title": "New Jeans",
-      "amount": 99.99
-    },
-    {
-      "id": "id3",
-      "date": "2024-01-24T22:00:00.000Z",
-      "title": "New Bag",
-      "amount": 139.99
-    }
-  ]
+  {
+    "id": "1",
+    "title": "Groceries",
+    "amount": 50.0,
+    "date": "2023-03-01T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Rent",
+    "amount": 1000.0,
+    "date": "2023-03-01T00:00:00.000Z"
+  }
+]

@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { getExpenses, addExpense } from './expenses.js';
 
 const app = express();
 const port = 3865;
@@ -20,11 +19,10 @@ app.use((req, res, next) => {
 // GET route to fetch expenses
 app.get('/expenses', async (req, res) => {
   try {
-    const filePath = path.join(__dirname, 'data', 'expenses.json');
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    const expensesData = JSON.parse(fileContent);
+    const expensesData = await getExpenses();
     res.status(200).json({ expenses: expensesData });
   } catch (error) {
+    console.error('Error reading expenses data:', error);
     res.status(500).send('Error reading expenses data');
   }
 });
@@ -38,14 +36,10 @@ app.post('/add-expense', async (req, res) => {
       id: (Math.random() * 1000).toString(),
     };
 
-    const filePath = path.join(__dirname, 'data', 'expenses.json');
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    const expensesData = JSON.parse(fileContent);
-    expensesData.push(newExpense);
-
-    await fs.writeFile(filePath, JSON.stringify(expensesData));
+    await addExpense(newExpense);
     res.status(201).json({ message: 'Expense is added', expense: newExpense });
   } catch (error) {
+    console.error('Error adding expense:', error);
     res.status(500).send('Error adding expense');
   }
 });
