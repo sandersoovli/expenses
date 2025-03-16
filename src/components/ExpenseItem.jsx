@@ -1,35 +1,17 @@
-import './ExpenseItem.css'
-import '../App.jsx'
-import  ExpenseDate  from './ExpenseDate.jsx'
-import Card from '../UI/Card.jsx'
-
+import React from 'react';
+import ExpenseDate from './ExpenseDate.jsx';
+import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
-const submitHandler = (event) => {
-    event.preventDefault()
-    const expenseData = {
-        title: enterTitle,
-        amount: enterAmount,
-        date: new Date(enteredDate)
-    }
-    props.onSaveExpensesData(expenseData)
-    setEnterdTitle('')
-    setEnterdAmount('')
-    setEnterdDate('')
-}
-const ClickHandler = () =>{
-    console.log('click');
-}
-    return (
-        <Card className='expense-item'>
-            <ExpenseDate date={props.data.date}/>
-            <div className='expense-item_description'>
-                <h2>{props.data.title}</h2>
-                <div className='expense-item_price'>{props.data.price}</div>
-                <button onClick={ClickHandler}>Click me</button>
-            </div>
-        </Card>
-    )
-}
+  return (
+    <li className="expense-item">
+      <ExpenseDate date={props.date} />
+      <div className="expense-item__description">
+        <h2>{props.title}</h2>
+        <div className="expense-item__price">${props.amount}</div>
+      </div>
+    </li>
+  );
+};
 
-export default ExpenseItem
+export default ExpenseItem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExpenseItem from './ExpenseItem';
+import ExpenseItem from './ExpenseItem.jsx';
 import './ExpensesList.css';
 
 const ExpensesList = (props) => {
@@ -12,7 +12,9 @@ const ExpensesList = (props) => {
       {props.items.map((expense) => (
         <ExpenseItem
           key={expense.id}
-          data={expense}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
         />
       ))}
     </ul>
